@@ -1,0 +1,1049 @@
+<html class="scroll-smooth" lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   MoneyMate – Learn, Earn, Grow
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Poppins", sans-serif;
+      background-color: #111827;
+      color: #d1d5db;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    /* Scrollbar for dark theme */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: #4ade80;
+      border-radius: 10px;
+      border: 2px solid #1f2937;
+    }
+    /* Neon glow shadows */
+    .shadow-neon-blue {
+      box-shadow:
+        0 0 6px #3b82f6,
+        0 0 12px #3b82f6,
+        0 0 18px #3b82f6,
+        0 0 30px #3b82f6;
+    }
+    .shadow-neon-green {
+      box-shadow:
+        0 0 6px #22c55e,
+        0 0 12px #22c55e,
+        0 0 18px #22c55e,
+        0 0 30px #22c55e;
+    }
+    .shadow-neon-purple {
+      box-shadow:
+        0 0 6px #a855f7,
+        0 0 12px #a855f7,
+        0 0 18px #a855f7,
+        0 0 30px #a855f7;
+    }
+    /* Animations */
+    @keyframes pulse-neon {
+      0%, 100% {
+        text-shadow:
+          0 0 6px #3b82f6,
+          0 0 12px #3b82f6,
+          0 0 18px #3b82f6,
+          0 0 30px #3b82f6;
+      }
+      50% {
+        text-shadow:
+          0 0 10px #60a5fa,
+          0 0 20px #60a5fa,
+          0 0 30px #60a5fa,
+          0 0 50px #60a5fa;
+      }
+    }
+    .text-neon-blue {
+      animation: pulse-neon 2.5s infinite;
+      color: #3b82f6;
+      text-shadow:
+        0 0 6px #3b82f6,
+        0 0 12px #3b82f6,
+        0 0 18px #3b82f6,
+        0 0 30px #3b82f6;
+    }
+    /* Chatbot scrollbar */
+    #chatbot-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    #chatbot-messages::-webkit-scrollbar-track {
+      background: #1f2937;
+    }
+    #chatbot-messages::-webkit-scrollbar-thumb {
+      background-color: #22c55e;
+      border-radius: 10px;
+      border: 2px solid #1f2937;
+    }
+    /* Fade in animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.5s ease forwards;
+    }
+  </style>
+ </head>
+ <body class="flex flex-col min-h-screen">
+  <!-- Login Modal -->
+  <div class="fixed inset-0 bg-gray-900 bg-opacity-95 flex items-center justify-center z-50" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title" aria-describedby="login-desc">
+   <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full text-center shadow-neon-blue animate-fadeIn">
+    <h2 class="text-3xl font-extrabold text-blue-400 mb-6 select-none" id="login-title">
+     Welcome to MoneyMate
+    </h2>
+    <p class="text-gray-300 mb-6" id="login-desc">
+     Please log in with Google to start your financial journey.
+    </p>
+    <button aria-label="Sign in with Google" class="inline-flex items-center justify-center space-x-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-md shadow-neon-blue transition focus:outline-none focus:ring-2 focus:ring-blue-400" id="google-login-btn" type="button">
+     <i class="fab fa-google fa-lg" aria-hidden="true">
+     </i>
+     <span>
+      Sign in with Google
+     </span>
+    </button>
+   </div>
+  </div>
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 bg-gray-900 border-b border-gray-700 shadow-neon-blue">
+   <nav aria-label="Primary Navigation" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+    <a aria-label="MoneyMate Home" class="flex items-center space-x-3 select-none" href="#">
+     <img alt="MoneyMate app logo with neon blue MM letters on dark background" class="w-10 h-10 rounded-full shadow-neon-blue" height="40" loading="lazy" src="https://storage.googleapis.com/a1aa/image/98918682-c037-468e-57b8-7c24e8033bab.jpg" width="40"/>
+     <span class="text-2xl font-extrabold text-blue-400 tracking-wide text-neon-blue">
+      MoneyMate
+     </span>
+    </a>
+    <button aria-expanded="false" aria-label="Toggle menu" class="sm:hidden text-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-500" id="nav-toggle" type="button">
+     <i class="fas fa-bars fa-lg" aria-hidden="true">
+     </i>
+    </button>
+    <ul class="hidden sm:flex space-x-8 text-gray-300 font-semibold tracking-wide select-none" id="nav-menu" role="menubar">
+     <li role="none">
+      <a class="hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#learning" role="menuitem" tabindex="-1">
+       Learning Hub
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-green-400 transition focus:outline-none focus:ring-2 focus:ring-green-400 rounded" href="#savings" role="menuitem" tabindex="-1">
+       Savings Goals
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-purple-400 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded" href="#investment" role="menuitem" tabindex="-1">
+       Investment Simulator
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#budget" role="menuitem" tabindex="-1">
+       Budget Planner
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-green-400 transition focus:outline-none focus:ring-2 focus:ring-green-400 rounded" href="#community" role="menuitem" tabindex="-1">
+       Challenges &amp; Community
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-purple-400 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded" href="#marketplace" role="menuitem" tabindex="-1">
+       Skill Marketplace
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#chatbot" role="menuitem" tabindex="-1">
+       Chatbot
+      </a>
+     </li>
+     <li role="none">
+      <a class="hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#parent-portal" role="menuitem" tabindex="-1">
+       Parent Portal
+      </a>
+     </li>
+    </ul>
+   </nav>
+  </header>
+  <!-- Mobile Menu -->
+  <div aria-label="Mobile Navigation" class="sm:hidden bg-gray-800 border-b border-gray-700 hidden" id="mobile-menu" role="menu">
+   <ul class="flex flex-col space-y-2 p-4 text-gray-300 font-semibold tracking-wide select-none">
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-blue-700 hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#learning" role="menuitem" tabindex="-1">
+      Learning Hub
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-green-700 hover:text-green-400 transition focus:outline-none focus:ring-2 focus:ring-green-400 rounded" href="#savings" role="menuitem" tabindex="-1">
+      Savings Goals
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-purple-700 hover:text-purple-400 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded" href="#investment" role="menuitem" tabindex="-1">
+      Investment Simulator
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-blue-700 hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#budget" role="menuitem" tabindex="-1">
+      Budget Planner
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-green-700 hover:text-green-400 transition focus:outline-none focus:ring-2 focus:ring-green-400 rounded" href="#community" role="menuitem" tabindex="-1">
+      Challenges &amp; Community
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-purple-700 hover:text-purple-400 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded" href="#marketplace" role="menuitem" tabindex="-1">
+      Skill Marketplace
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-blue-700 hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#chatbot" role="menuitem" tabindex="-1">
+      Chatbot
+     </a>
+    </li>
+    <li role="none">
+     <a class="block px-2 py-2 rounded hover:bg-blue-700 hover:text-blue-400 transition focus:outline-none focus:ring-2 focus:ring-blue-400 rounded" href="#parent-portal" role="menuitem" tabindex="-1">
+      Parent Portal
+     </a>
+    </li>
+   </ul>
+  </div>
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-24">
+   <!-- Hero Section -->
+   <section aria-label="App overview" class="text-center max-w-3xl mx-auto space-y-6">
+    <h1 class="text-5xl font-extrabold text-blue-400 tracking-tight leading-tight shadow-neon-blue">
+     MoneyMate – Learn, Earn, Grow
+    </h1>
+    <p class="text-gray-300 text-lg sm:text-xl leading-relaxed">
+     A safe, engaging mobile app designed for teenagers (13–19 yrs) that
+        combines financial literacy and skill-based gig opportunities. Gamify
+        your learning, build smart money habits, and showcase your skills in a
+        secure environment.
+    </p>
+    <img alt="Group of diverse teenagers happily using mobile devices with neon blue glowing app interface showing finance and skills icons" class="mx-auto rounded-lg shadow-lg shadow-neon-blue" height="300" loading="lazy" src="https://storage.googleapis.com/a1aa/image/5d3e9397-a953-4e74-ab13-9e76adba5e52.jpg" width="600"/>
+   </section>
+   <!-- 1. Financial Learning Hub -->
+   <section aria-label="Financial Learning Hub" class="space-y-12" id="learning">
+    <h2 class="text-4xl font-extrabold text-blue-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Financial Learning Hub
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Interactive bite-sized lessons designed to teach you the essentials of
+        money management and financial literacy.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+     <!-- Lesson Card Template -->
+     <article aria-label="Budgeting Basics lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-blue transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration of a teenager managing budgeting basics with income, expenses, and balance charts glowing neon blue" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/e63db0aa-a0b4-4aaa-7563-de07a6094a57.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-blue-400 mb-3">
+       Budgeting Basics
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Learn how to track your income, expenses, and balance to manage your
+            money smartly.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +50 XP
+       </span>
+      </div>
+     </article>
+     <article aria-label="Needs vs Wants lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration showing a teenager deciding between needs and wants with neon green icons of shopping and essentials" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/3c4f2730-e15b-4829-940c-f7b021dc23f1.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-green-400 mb-3">
+       Needs vs. Wants
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Understand the difference between essential needs and fun wants to
+            prioritize your spending.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +40 XP
+       </span>
+      </div>
+     </article>
+     <article aria-label="Saving Smartly lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-purple transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration of a piggy bank glowing neon purple with coins dropping in, symbolizing smart saving habits" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/1b35c467-4d98-42b9-b17e-064fc7e42326.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">
+       Saving Smartly
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Tips and tricks to save money effectively and reach your goals
+            faster.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +45 XP
+       </span>
+      </div>
+     </article>
+     <article aria-label="Digital Payments &amp; Banking Basics lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-blue transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration of a smartphone with digital payment icons glowing neon blue, representing banking basics" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/a1a173f4-a068-4da0-998e-e578734b1b3d.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-blue-400 mb-3">
+       Digital Payments &amp; Banking Basics
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Learn how to use digital wallets, UPI, and basic banking safely and
+            smartly.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +50 XP
+       </span>
+      </div>
+     </article>
+     <article aria-label="Intro to Investing lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration of stock charts, mutual funds, and SIP icons glowing neon green representing investing basics" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/49db8484-449d-4862-9c44-0c97274a90b2.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-green-400 mb-3">
+       Intro to Investing
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Discover stocks, mutual funds, and SIPs to start your investment
+            journey.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +60 XP
+       </span>
+      </div>
+     </article>
+     <article aria-label="Online Financial Safety lesson" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-purple transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Illustration of a shield with a lock and digital icons glowing neon purple representing online financial safety" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/0c7e3c86-573b-44e7-2c8c-5907ce702cc0.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">
+       Online Financial Safety
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Stay safe online by learning how to protect your money and personal
+            info.
+      </p>
+      <div aria-label="Experience points earned" class="flex items-center space-x-2 absolute top-4 right-4 text-yellow-400 select-none">
+       <i class="fas fa-coins">
+       </i>
+       <span class="font-semibold">
+        +55 XP
+       </span>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- 2. Smart Savings Goals -->
+   <section aria-label="Smart Savings Goals" class="space-y-12" id="savings">
+    <h2 class="text-4xl font-extrabold text-green-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Smart Savings Goals
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Create your own savings targets and track your progress with motivating
+        tips and visual trackers.
+    </p>
+    <div class="space-y-10 max-w-3xl mx-auto">
+     <div aria-label="Savings goal for New Smartphone" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400" role="region" tabindex="0">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-2xl font-semibold text-green-400">
+        New Smartphone
+       </h3>
+       <span class="text-gray-400 font-mono select-none">
+        ₹8,000 / ₹12,000
+       </span>
+      </div>
+      <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+       <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="67" class="bg-green-400 h-6 rounded-full transition-all duration-700" role="progressbar" style="width: 67%">
+       </div>
+      </div>
+      <p class="mt-4 text-gray-400 italic select-none">
+       Tip: Try saving ₹100 daily to reach your goal faster!
+      </p>
+     </div>
+     <div aria-label="Savings goal for Summer Trip" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400" role="region" tabindex="0">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-2xl font-semibold text-green-400">
+        Summer Trip
+       </h3>
+       <span class="text-gray-400 font-mono select-none">
+        ₹3,500 / ₹10,000
+       </span>
+      </div>
+      <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+       <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="35" class="bg-green-400 h-6 rounded-full transition-all duration-700" role="progressbar" style="width: 35%">
+       </div>
+      </div>
+      <p class="mt-4 text-gray-400 italic select-none">
+       Tip: Cut down on small daily expenses to save more!
+      </p>
+     </div>
+     <div aria-label="Savings goal for Gift for Friend" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400" role="region" tabindex="0">
+      <div class="flex justify-between items-center mb-4">
+       <h3 class="text-2xl font-semibold text-green-400">
+        Gift for Friend
+       </h3>
+       <span class="text-gray-400 font-mono select-none">
+        ₹1,200 / ₹2,000
+       </span>
+      </div>
+      <div class="w-full bg-gray-700 rounded-full h-6 overflow-hidden">
+       <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" class="bg-green-400 h-6 rounded-full transition-all duration-700" role="progressbar" style="width: 60%">
+       </div>
+      </div>
+      <p class="mt-4 text-gray-400 italic select-none">
+       Tip: Use your gig earnings to boost your savings!
+      </p>
+     </div>
+    </div>
+   </section>
+   <!-- 3. Mini Investment Simulator -->
+   <section aria-label="Mini Investment Simulator" class="space-y-12" id="investment">
+    <h2 class="text-4xl font-extrabold text-purple-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Mini Investment Simulator
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Practice investing with virtual money and learn about risk and reward
+        safely.
+    </p>
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg max-w-4xl mx-auto space-y-6">
+     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0">
+      <div>
+       <h3 class="text-2xl font-semibold text-purple-400 select-none">
+        Your Virtual Portfolio
+       </h3>
+       <p class="text-gray-400 font-mono select-none">
+        Balance: ₹50,000 (Fake Currency)
+       </p>
+      </div>
+      <button aria-label="Buy Stocks" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-neon-purple" type="button">
+       Buy Stocks
+      </button>
+     </div>
+     <div aria-label="Investment portfolio table" class="overflow-x-auto rounded-lg border border-gray-700 max-h-72" role="region" tabindex="0">
+      <table class="min-w-full text-left text-gray-300">
+       <thead class="bg-gray-900 border-b border-gray-700 sticky top-0 z-10">
+        <tr>
+         <th class="px-4 py-3 text-purple-400 font-semibold">
+          Investment
+         </th>
+         <th class="px-4 py-3 text-purple-400 font-semibold">
+          Type
+         </th>
+         <th class="px-4 py-3 text-purple-400 font-semibold">
+          Units
+         </th>
+         <th class="px-4 py-3 text-purple-400 font-semibold">
+          Current Value
+         </th>
+         <th class="px-4 py-3 text-purple-400 font-semibold">
+          Gain/Loss
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="px-4 py-3">
+          NeonTech Corp
+         </td>
+         <td class="px-4 py-3">
+          Stock
+         </td>
+         <td class="px-4 py-3">
+          100
+         </td>
+         <td class="px-4 py-3">
+          ₹12,500
+         </td>
+         <td class="px-4 py-3 text-green-400 font-semibold">
+          +₹1,200
+         </td>
+        </tr>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="px-4 py-3">
+          Future Growth Fund
+         </td>
+         <td class="px-4 py-3">
+          Mutual Fund
+         </td>
+         <td class="px-4 py-3">
+          50
+         </td>
+         <td class="px-4 py-3">
+          ₹7,800
+         </td>
+         <td class="px-4 py-3 text-red-400 font-semibold">
+          -₹300
+         </td>
+        </tr>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="px-4 py-3">
+          Smart SIP Plan
+         </td>
+         <td class="px-4 py-3">
+          SIP
+         </td>
+         <td class="px-4 py-3">
+          12 months
+         </td>
+         <td class="px-4 py-3">
+          ₹5,200
+         </td>
+         <td class="px-4 py-3 text-green-400 font-semibold">
+          +₹450
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <img alt="Virtual stock market game interface showing charts, coins, and investment options glowing neon purple" class="rounded-lg mx-auto shadow-neon-purple" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/ebd98dea-8cf5-4ad8-b9ff-9ce858724038.jpg" width="600"/>
+    </div>
+   </section>
+   <!-- 4. Weekly Budget Planner -->
+   <section aria-label="Weekly Budget Planner" class="space-y-12" id="budget">
+    <h2 class="text-4xl font-extrabold text-blue-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Weekly Budget Planner
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Drag-and-drop your income to allocate money for savings, spending, and
+        investing. Track your progress with graphs and insights.
+    </p>
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg max-w-4xl mx-auto space-y-6">
+     <form aria-label="Set weekly income and save budget" class="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-4 sm:space-y-0" id="budget-form">
+      <div>
+       <label class="block text-blue-400 font-semibold mb-2 select-none" for="weekly-income">
+        Set Your Weekly Income
+       </label>
+       <input aria-describedby="income-desc" aria-required="true" class="w-40 rounded-md bg-gray-700 text-gray-200 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400" id="weekly-income" min="0" name="weekly-income" type="number" value="1500"/>
+       <p class="text-gray-400 text-sm mt-1 select-none" id="income-desc">
+        Enter your weekly income (pocket money or gig income)
+       </p>
+      </div>
+      <button aria-label="Save budget" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-neon-blue" type="submit">
+       Save Budget
+      </button>
+     </form>
+     <div aria-label="Budget allocation areas" class="flex flex-col sm:flex-row sm:space-x-6 space-y-6 sm:space-y-0">
+      <div aria-dropeffect="none" class="flex-1 bg-gray-700 rounded-xl p-5 shadow-neon-green hover:shadow-neon-blue transition-shadow duration-400">
+       <h4 class="text-xl font-semibold text-blue-300 mb-4 select-none">
+        Savings
+       </h4>
+       <div aria-label="Savings allocation drop area" class="h-40 bg-gray-600 rounded-lg flex items-center justify-center text-gray-400 select-none cursor-pointer" id="savings-drop" tabindex="0">
+        Drag to allocate
+       </div>
+      </div>
+      <div aria-dropeffect="none" class="flex-1 bg-gray-700 rounded-xl p-5 shadow-neon-green hover:shadow-neon-blue transition-shadow duration-400">
+       <h4 class="text-xl font-semibold text-green-300 mb-4 select-none">
+        Spending
+       </h4>
+       <div aria-label="Spending allocation drop area" class="h-40 bg-gray-600 rounded-lg flex items-center justify-center text-gray-400 select-none cursor-pointer" id="spending-drop" tabindex="0">
+        Drag to allocate
+       </div>
+      </div>
+      <div aria-dropeffect="none" class="flex-1 bg-gray-700 rounded-xl p-5 shadow-neon-green hover:shadow-neon-blue transition-shadow duration-400">
+       <h4 class="text-xl font-semibold text-purple-300 mb-4 select-none">
+        Investing
+       </h4>
+       <div aria-label="Investing allocation drop area" class="h-40 bg-gray-600 rounded-lg flex items-center justify-center text-gray-400 select-none cursor-pointer" id="investing-drop" tabindex="0">
+        Drag to allocate
+       </div>
+      </div>
+     </div>
+     <div aria-label="Weekly Budget Overview graph" class="mt-8">
+      <h4 class="text-xl font-semibold text-gray-300 mb-3 select-none">
+       Weekly Budget Overview
+      </h4>
+      <img alt="Graph showing weekly budget allocation with neon blue, green, and purple accents" class="rounded-lg mx-auto shadow-neon-blue" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/8d2180fe-01a0-4ad4-17d4-9c2deebf04ff.jpg" width="600"/>
+     </div>
+    </div>
+   </section>
+   <!-- 5. Parent/Guardian Portal -->
+   <section aria-label="Parent and Guardian Portal" class="space-y-12" id="parent-portal">
+    <h2 class="text-4xl font-extrabold text-blue-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Parent/Guardian Portal (Optional)
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Parents can track progress, set allowances, and reward good habits with
+        full data safety and parental consent controls.
+    </p>
+    <div class="bg-gray-800 rounded-xl p-6 shadow-lg max-w-4xl mx-auto space-y-10">
+     <div aria-label="Parent portal features" class="flex flex-col sm:flex-row sm:space-x-6 space-y-6 sm:space-y-0" role="region">
+      <div class="flex-1 bg-gray-700 rounded-xl p-5 shadow-neon-green hover:shadow-neon-blue transition-shadow duration-400">
+       <h4 class="text-2xl font-semibold text-blue-300 mb-4 select-none">
+        Track Progress
+       </h4>
+       <img alt="Parent viewing child's progress dashboard with charts and badges glowing neon blue" class="rounded-lg w-full object-cover shadow-neon-blue" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/3865eb04-9b36-4eaf-c401-1953feba5a33.jpg" width="400"/>
+      </div>
+      <div class="flex-1 bg-gray-700 rounded-xl p-5 shadow-neon-green hover:shadow-neon-blue transition-shadow duration-400">
+       <h4 class="text-2xl font-semibold text-green-300 mb-4 select-none">
+        Set Allowances
+       </h4>
+       <img alt="Parent using mobile app to set allowance controls with neon green glowing interface" class="rounded-lg w-full object-cover shadow-neon-green" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/64eea28b-d85f-409c-9735-3a8a103a7be8.jpg" width="400"/>
+      </div>
+     </div>
+     <div aria-label="Reward good habits" class="bg-gray-700 rounded-xl p-5 shadow-neon-purple hover:shadow-neon-blue transition-shadow duration-400" role="region" tabindex="0">
+      <h4 class="text-2xl font-semibold text-purple-300 mb-4 select-none">
+       Reward Good Habits
+      </h4>
+      <p class="text-gray-400 select-text leading-relaxed">
+       Parents can reward teens with badges, coins, or extra gig
+            opportunities for consistent good money habits.
+      </p>
+      <img alt="Reward badges and coins glowing neon purple representing parental rewards for teens" class="rounded-lg mt-6 mx-auto shadow-neon-purple" height="150" loading="lazy" src="https://storage.googleapis.com/a1aa/image/49b5417a-7be5-43df-b7d5-a44751eb37df.jpg" width="600"/>
+     </div>
+    </div>
+   </section>
+   <!-- 6. Challenges & Community -->
+   <section aria-label="Challenges and Community" class="space-y-12" id="community">
+    <h2 class="text-4xl font-extrabold text-green-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Challenges &amp; Community
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Join weekly challenges, check leaderboards, share stories, and get
+        inspired in a safe, teen-only moderated community.
+    </p>
+    <div class="max-w-5xl mx-auto space-y-12">
+     <div aria-label="Weekly Challenges" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400" role="region" tabindex="0">
+      <h3 class="text-3xl font-semibold text-green-400 mb-6 select-none">
+       Weekly Challenges
+      </h3>
+      <ul class="space-y-4 text-gray-300 list-disc list-inside">
+       <li class="flex items-center space-x-3">
+        <i class="fas fa-trophy text-yellow-400" aria-hidden="true">
+        </i>
+        <span>
+         Save ₹50 Daily
+        </span>
+       </li>
+       <li class="flex items-center space-x-3">
+        <i class="fas fa-trophy text-yellow-400" aria-hidden="true">
+        </i>
+        <span>
+         No-Spend Week
+        </span>
+       </li>
+       <li class="flex items-center space-x-3">
+        <i class="fas fa-trophy text-yellow-400" aria-hidden="true">
+        </i>
+        <span>
+         Complete 3 Lessons in a Row
+        </span>
+       </li>
+       <li class="flex items-center space-x-3">
+        <i class="fas fa-trophy text-yellow-400" aria-hidden="true">
+        </i>
+        <span>
+         Earn 100 XP in Investment Simulator
+        </span>
+       </li>
+      </ul>
+     </div>
+     <div aria-label="Leaderboard" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 overflow-x-auto" role="region" tabindex="0">
+      <h3 class="text-3xl font-semibold text-green-400 mb-6 select-none">
+       Leaderboard
+      </h3>
+      <table class="w-full text-left text-gray-300">
+       <thead class="border-b border-gray-700 sticky top-0 bg-gray-900 z-10">
+        <tr>
+         <th class="py-3 px-5 text-green-300 font-semibold">
+          Rank
+         </th>
+         <th class="py-3 px-5 text-green-300 font-semibold">
+          Username
+         </th>
+         <th class="py-3 px-5 text-green-300 font-semibold">
+          XP
+         </th>
+         <th class="py-3 px-5 text-green-300 font-semibold">
+          Streak
+         </th>
+        </tr>
+       </thead>
+       <tbody>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="py-3 px-5 font-bold text-yellow-400">
+          1
+         </td>
+         <td class="py-3 px-5">
+          MoneyMaster13
+         </td>
+         <td class="py-3 px-5">
+          1,250
+         </td>
+         <td class="py-3 px-5">
+          15 days
+         </td>
+        </tr>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="py-3 px-5 font-bold text-gray-300">
+          2
+         </td>
+         <td class="py-3 px-5">
+          SmartSaver19
+         </td>
+         <td class="py-3 px-5">
+          1,100
+         </td>
+         <td class="py-3 px-5">
+          12 days
+         </td>
+        </tr>
+        <tr class="border-b border-gray-700 hover:bg-gray-700 transition cursor-default" tabindex="0">
+         <td class="py-3 px-5 font-bold text-gray-300">
+          3
+         </td>
+         <td class="py-3 px-5">
+          InvestGuru17
+         </td>
+         <td class="py-3 px-5">
+          980
+         </td>
+         <td class="py-3 px-5">
+          10 days
+         </td>
+        </tr>
+       </tbody>
+      </table>
+     </div>
+     <div aria-label="Peer Stories and Tips" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 space-y-6" role="region" tabindex="0">
+      <h3 class="text-3xl font-semibold text-green-400 select-none">
+       Peer Stories &amp; Tips
+      </h3>
+      <article aria-label="Story: How I Saved ₹5,000 in 3 Months" class="bg-gray-700 rounded-lg p-5 hover:bg-gray-600 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400" role="article" tabindex="0">
+       <h4 class="text-xl font-semibold text-green-300 mb-2">
+        How I Saved ₹5,000 in 3 Months
+       </h4>
+       <p class="text-gray-300 text-sm leading-relaxed">
+        By SmartSaver19: Sharing my journey of cutting expenses and
+              setting smart goals.
+       </p>
+      </article>
+      <article aria-label="Story: Top 5 Investment Tips for Teens" class="bg-gray-700 rounded-lg p-5 hover:bg-gray-600 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400" role="article" tabindex="0">
+       <h4 class="text-xl font-semibold text-green-300 mb-2">
+        Top 5 Investment Tips for Teens
+       </h4>
+       <p class="text-gray-300 text-sm leading-relaxed">
+        By InvestGuru17: Simple strategies to start investing safely and
+              confidently.
+       </p>
+      </article>
+      <article aria-label="Story: Balancing School and Gig Work" class="bg-gray-700 rounded-lg p-5 hover:bg-gray-600 transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-green-400" role="article" tabindex="0">
+       <h4 class="text-xl font-semibold text-green-300 mb-2">
+        Balancing School and Gig Work
+       </h4>
+       <p class="text-gray-300 text-sm leading-relaxed">
+        By MoneyMaster13: How I manage my time and earn pocket money with
+              gigs.
+       </p>
+      </article>
+     </div>
+    </div>
+   </section>
+   <!-- 7. Skill & Gig Marketplace -->
+   <section aria-label="Skill and Gig Marketplace" class="space-y-12" id="marketplace">
+    <h2 class="text-4xl font-extrabold text-purple-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     Skill &amp; Gig Marketplace (Safe Zone)
+    </h2>
+    <p class="text-gray-300 max-w-4xl mx-auto text-center leading-relaxed">
+     Showcase your skills, exchange gigs safely, and earn pocket money or
+        skill swaps with parental monitoring and ratings.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
+     <!-- Gig Card Template -->
+     <article aria-label="Gig: Digital Art Commissions" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-purple transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen artist creating digital art with neon purple glowing tablet and stylus" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/2e5de97b-6885-4271-baa9-d91627a4b9fa.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">
+       Digital Art Commissions
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Custom digital illustrations and character designs for your projects.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.8 (120)
+        </span>
+       </div>
+       <button aria-label="Request Digital Art Commissions gig" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-neon-purple" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+     <article aria-label="Gig: Coding Lessons" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-blue transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen coder teaching programming on laptop with neon blue glowing code on screen" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/1d9f7cdd-096c-46e3-b73d-210fff7f0f4e.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-blue-400 mb-3">
+       Coding Lessons
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Learn Python, JavaScript, and web development basics from a peer
+            tutor.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.9 (85)
+        </span>
+       </div>
+       <button aria-label="Request Coding Lessons gig" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-neon-blue" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+     <article aria-label="Gig: Music Lessons" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen musician playing guitar with neon green glowing musical notes around" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/53248649-0199-4288-603d-dccfc9970a63.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-green-400 mb-3">
+       Music Lessons
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Guitar and piano lessons for beginners and intermediate learners.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.7 (60)
+        </span>
+       </div>
+       <button aria-label="Request Music Lessons gig" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-green-400 shadow-neon-green" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+     <article aria-label="Gig: Creative Writing" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-purple transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen writer typing on laptop with neon purple glowing text and creative ideas icons" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/aa010e22-f9a2-4e14-adc7-abc4e2eaa7f4.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-purple-400 mb-3">
+       Creative Writing
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Short stories, poems, and blog posts tailored to your needs.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.9 (95)
+        </span>
+       </div>
+       <button aria-label="Request Creative Writing gig" class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-purple-400 shadow-neon-purple" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+     <article aria-label="Gig: Logo Design" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-blue transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen graphic designer working on logo design with neon blue glowing computer screen" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/50b426eb-d385-4df3-cd84-bc2aa730c533.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-blue-400 mb-3">
+       Logo Design
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Unique and modern logos for your brand or project.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.8 (70)
+        </span>
+       </div>
+       <button aria-label="Request Logo Design gig" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-neon-blue" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+     <article aria-label="Gig: Video Editing" class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-neon-green transition-shadow duration-400 relative flex flex-col" role="article" tabindex="0">
+      <img alt="Teen video editor working on laptop with neon green glowing video timeline and editing tools" class="rounded-lg mb-5 object-cover w-full h-48" height="200" loading="lazy" src="https://storage.googleapis.com/a1aa/image/c9168ec2-45d0-42d8-9842-b3b506292f39.jpg" width="400"/>
+      <h3 class="text-2xl font-semibold text-green-400 mb-3">
+       Video Editing
+      </h3>
+      <p class="text-gray-300 flex-grow leading-relaxed">
+       Edit your videos with cool effects and smooth transitions.
+      </p>
+      <div aria-label="Rating and request gig button" class="mt-4 flex items-center justify-between text-yellow-400 select-none">
+       <div class="flex items-center space-x-2">
+        <i class="fas fa-star" aria-hidden="true">
+        </i>
+        <span>
+         4.7 (50)
+        </span>
+       </div>
+       <button aria-label="Request Video Editing gig" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-green-400 shadow-neon-green" type="button">
+        Request Gig
+       </button>
+      </div>
+     </article>
+    </div>
+   </section>
+   <!-- 8. Chatbot Section -->
+   <section aria-label="AI Chatbot for financial learning" class="space-y-12 max-w-4xl mx-auto" id="chatbot">
+    <h2 class="text-4xl font-extrabold text-blue-400 tracking-wide text-center mb-6 shadow-neon-blue">
+     MoneyMate Chatbot
+    </h2>
+    <p class="text-gray-300 text-center max-w-3xl mx-auto leading-relaxed">
+     Chat with MoneyMate AI to learn about saving, investing, and smart money
+        habits. Ask questions and get friendly guidance anytime!
+    </p>
+    <div class="bg-gray-800 rounded-xl shadow-lg p-6 flex flex-col h-[500px]">
+     <div aria-live="polite" aria-relevant="additions" class="flex-grow overflow-y-auto mb-4 space-y-4 px-3" id="chatbot-messages" role="log" tabindex="0">
+      <div class="bg-green-600 bg-opacity-90 text-white rounded-lg p-4 max-w-xs animate-fadeIn" role="alert">
+       <p>
+        Hi! I'm MoneyMate Bot 🤖. Ask me anything about saving money,
+              investing, or budgeting!
+       </p>
+      </div>
+     </div>
+     <form aria-label="Chat input form" autocomplete="off" class="flex space-x-3" id="chatbot-form">
+      <input aria-label="Chat input" aria-required="true" class="flex-grow rounded-lg px-4 py-3 bg-gray-700 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-400" id="chatbot-input" placeholder="Type your question here..." type="text"/>
+      <button aria-label="Send chat message" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-neon-blue" type="submit">
+       Send
+      </button>
+     </form>
+    </div>
+   </section>
+  </main>
+  <!-- Footer -->
+  <footer class="bg-gray-900 border-t border-gray-700 py-6 mt-20 text-center text-gray-500 text-sm select-none">
+   © 2024 MoneyMate. All rights reserved. Designed for safe teen financial
+    literacy and skill growth.
+  </footer>
+  <script>
+   // Navigation toggle for mobile menu
+    const navToggle = document.getElementById("nav-toggle");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    navToggle.addEventListener("click", () => {
+      const expanded = navToggle.getAttribute("aria-expanded") === "true";
+      navToggle.setAttribute("aria-expanded", !expanded);
+      if (mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.remove("hidden");
+        navToggle.innerHTML = '<i class="fas fa-times fa-lg"></i>';
+      } else {
+        mobileMenu.classList.add("hidden");
+        navToggle.innerHTML = '<i class="fas fa-bars fa-lg"></i>';
+      }
+    });
+
+    // Login modal logic (simulate Google login)
+    const loginModal = document.getElementById("login-modal");
+    const googleLoginBtn = document.getElementById("google-login-btn");
+
+    googleLoginBtn.addEventListener("click", () => {
+      // Simulate login delay
+      googleLoginBtn.disabled = true;
+      googleLoginBtn.innerHTML =
+        '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+      setTimeout(() => {
+        loginModal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }, 1500);
+    });
+
+    // Prevent scrolling behind modal
+    document.body.style.overflow = "hidden";
+
+    // Chatbot logic (simple AI simulation)
+    const chatbotForm = document.getElementById("chatbot-form");
+    const chatbotInput = document.getElementById("chatbot-input");
+    const chatbotMessages = document.getElementById("chatbot-messages");
+
+    // Simple AI responses for demo
+    const aiResponses = [
+      {
+        keywords: ["save", "saving", "savings"],
+        response:
+          "Saving money is a great habit! Try setting small daily goals and track your progress.",
+      },
+      {
+        keywords: ["invest", "investment", "stocks", "mutual funds", "sip"],
+        response:
+          "Investing helps your money grow over time. Start small and diversify your investments.",
+      },
+      {
+        keywords: ["budget", "budgeting", "plan"],
+        response:
+          "Budgeting helps you control your spending and save more. Allocate your income wisely!",
+      },
+      {
+        keywords: ["risk", "reward", "safe"],
+        response:
+          "All investments have risks. Learn about them and invest only what you can afford to lose.",
+      },
+      {
+        keywords: ["digital", "payments", "banking"],
+        response:
+          "Use secure digital payment methods and never share your passwords or OTPs with anyone.",
+      },
+      {
+        keywords: ["help", "tips", "advice"],
+        response:
+          "I'm here to help! Ask me anything about money management, saving, or investing.",
+      },
+    ];
+
+    function getAIResponse(message) {
+      const msg = message.toLowerCase();
+      for (const item of aiResponses) {
+        for (const keyword of item.keywords) {
+          if (msg.includes(keyword)) {
+            return item.response;
+          }
+        }
+      }
+      return "Sorry, I didn't understand that. Try asking about saving or investing!";
+    }
+
+    function appendMessage(text, fromUser = false) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = fromUser
+        ? "bg-blue-600 text-white rounded-lg p-4 max-w-xs self-end animate-fadeIn"
+        : "bg-green-600 bg-opacity-90 text-white rounded-lg p-4 max-w-xs animate-fadeIn";
+      msgDiv.textContent = text;
+      chatbotMessages.appendChild(msgDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    chatbotForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const userMsg = chatbotInput.value.trim();
+      if (!userMsg) return;
+      appendMessage(userMsg, true);
+      chatbotInput.value = "";
+      setTimeout(() => {
+        const aiMsg = getAIResponse(userMsg);
+        appendMessage(aiMsg, false);
+      }, 1000);
+    });
+
+    // Accessibility: focus chatbot messages container on new message
+    chatbotMessages.addEventListener("DOMNodeInserted", () => {
+      chatbotMessages.focus();
+    });
+  </script>
+ </body>
+</html>
